@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+
+# TypeScript build output
+dist/
+
+# Editor files
+.vscode/
+*.code-workspace
+
+# Environment variables
+.env
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# macOS files
+.DS_Store
