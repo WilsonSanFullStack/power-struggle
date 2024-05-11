@@ -23,7 +23,7 @@ export class User extends Model<User> {
   id!: string;
 
   @Column
-  firstname!: string;
+  firstName!: string;
 
   @Column
   lastName!: string;
@@ -48,13 +48,13 @@ export class User extends Model<User> {
 
   @Column
   war!: number;
+  
+  @Column
+  store!: number;
 
   @Unique
   @Column 
   email!: string;
-
-  @Column
-  store!: number;
 
   @Column
   admin!: boolean;

@@ -1,16 +1,17 @@
 import { Router, Request, Response } from "express";
 const router = Router();
-import { postUser } from "../controller/registerC";
+import { postUser, getAllUser } from "../controller/registerC";
+import { USERS } from "../type";
 
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const user: USER = req.body;
+    const user: USERS = req.body;
     if (
-      user.firstname &&
-      user.email &&
-      user.lastName &&
-      user.userName &&
-      user.password
+      user?.firstName &&
+      user?.email &&
+      user?.lastName &&
+      user?.userName &&
+      user?.password
     ) {
       user.experience = 1;
       user.job = 1;
@@ -19,6 +20,9 @@ router.post("/", async (req: Request, res: Response) => {
       user.level = 1;
       user.nextLevel = user.level + 1;
       const newUser = await postUser(user);
+      if (newUser.message) {
+        return res.status(401).json(newUser)
+      } 
       if (newUser) {
         return res.status(200).json({ message: "Registro exitoso" });
       }
@@ -31,5 +35,14 @@ router.post("/", async (req: Request, res: Response) => {
       .json({ message: "Error en el servidor intente nuevamente" + error });
   }
 });
+
+router.get("/", async (req:Request, res:Response) => {
+  try {
+    const users = await getAllUser()
+    return res.status(200).json(users) 
+  } catch (error) {
+    return res.status(404).json(error)
+  }
+})
 
 export default router;

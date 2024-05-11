@@ -1,5 +1,8 @@
-declare interface USER {
-  firstname: string;
+import { User } from "./models/User";
+
+export interface USER {
+  id?: string;
+  firstName: string;
   lastName: string;
   userName: string;
   password: string;
@@ -8,8 +11,10 @@ declare interface USER {
   experience: number;
   job: number;
   war: number;
-  email: string;
   store: number;
+  email: string;
   admin: boolean;
   ipAddress: string;
 }
+
+export interface USERS extends Partial<User> {}

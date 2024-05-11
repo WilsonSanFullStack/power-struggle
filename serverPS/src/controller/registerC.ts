@@ -1,11 +1,12 @@
 import { User } from "../models/User";
+import {USERS } from "../type";
+import bcrypt from 'bcryptjs'
 
-export const postUser = async (user: USER) => {
+export const postUser = async (user: USERS) => {
   try {
-    
     if (
-      user.email === "harveysanch@gmail.com" &&
-      user.firstname.toLowerCase() === "wilson"
+      user?.email === "harveysanch@gmail.com" &&
+      user?.firstName?.toLowerCase() === "wilson"
     ) {
       user.admin = true;
     }
@@ -13,10 +14,37 @@ export const postUser = async (user: USER) => {
     if (verifyUser) {
       return { message: "El email ya esta registrado" };
     } else {
-      const newUser = await User.create()
+      const password = user.password
+      const saltRounds = 10
+      if (password) {
+        const hashedPassword = await new Promise<string>((resolve, reject) => {
+          bcrypt.hash(password, saltRounds, (err: Error | null, hash: string) => {
+              if (err) {
+                  reject(err);
+              } else {
+                  resolve(hash);
+              }
+          });
+      });
+      user.password = hashedPassword
+      }
+      const newUser = await User.create(user as User);
+      return {
+        message: `Usuario creado correctamente con username ${newUser.userName}`,
+      };
     }
-
   } catch (error) {
-    
+    return { message: `Error en el servidor ${error}` };
+  }
+};
+
+export const getAllUser = async () => {
+  try {
+    const users = await User.findAll({
+      attributes: ["id", "userName", "email", "password"],
+    });
+    return users;
+  } catch (error) {
+    return { message: `error en el servidor ${error}` };
   }
 };
