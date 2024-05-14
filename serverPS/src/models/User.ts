@@ -22,52 +22,52 @@ export class User extends Model<User> {
   @Column({primaryKey: true, type: DataType.UUID})
   id!: string;
 
-  @Column
+  @Column(DataType.STRING)
   firstName!: string;
 
-  @Column
+  @Column(DataType.STRING)
   lastName!: string;
   
-  @Column
+  @Column(DataType.STRING)
   userName!: string;
 
-  @Column
+  @Column(DataType.STRING)
   password!: string;
 
-  @Column
+  @Column(DataType.INTEGER)
   level!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   nextLevel!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   experience!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   job!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   war!: number;
   
-  @Column
+  @Column(DataType.INTEGER)
   store!: number;
 
   @Unique
-  @Column 
+  @Column (DataType.STRING)
   email!: string;
 
-  @Column
+  @Column(DataType.BOOLEAN)
   admin!: boolean;
 
-  @Column
+  @Column(DataType.STRING)
   ipAddress!: string;
 
   @CreatedAt
-  @Column
+  @Column(DataType.DATE)
   createdAt!: Date;
 
   @UpdatedAt
-  @Column
+  @Column(DataType.DATE)
   updatedAt!: Date;
 
   beforeCreate() {

@@ -2,19 +2,21 @@ import bcrypt from "bcryptjs";
 import { User } from "../models/User";
 import { generateToken } from "../jwt/jwt";
 
-
-export const logging = async (session: string, password: string) => {
+export const logging = async (login: { session: string; password: string }) => {
   try {
+    const {session, password } = login
     const user = await User.findOne({
-      where: { email: session },
+      where: { email: login.session },
       attributes: ["id", "firstName", "lastName", "email", "password", "admin"],
     });
     if (!user) {
-      return {message: "Credenciales incorrectas correo electronico no encontrado"}
+      return {
+        error: "Credenciales incorrectas correo electronico no encontrado",
+      };
     }
-    const passwordMatch = await bcrypt.compare(password, user.password)
+    const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return {message: 'Credenciales incorrectas.'}
+      return { error: "Credenciales incorrectas." };
     }
     const payload = {
       id: user.id,
@@ -22,11 +24,11 @@ export const logging = async (session: string, password: string) => {
       lastName: user.lastName,
       email: user.email,
       password: user.password,
-      admin: user.admin
-    }
-    const token = generateToken(payload)
-    return token
+      admin: user.admin,
+    };
+    const token = generateToken(payload);
+    return token;
   } catch (error) {
-    return {message: `Error en el servidor ${error}`}
+    return { error: `Error en el servidor ${error}` };
   }
 };

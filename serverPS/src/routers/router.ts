@@ -1,7 +1,6 @@
 import { Router } from "express";
 const router = Router();
 
-import routerUser from "./routerUser";
 import routerPing from './routerPing'
 import registerR from "./registerR";
 import authR from "./authR"
@@ -14,7 +13,6 @@ const path = {
   login: `${root}${auth}`,
 }
 
-router.use("/", routerUser);
 router.use(path.ping, routerPing);
 router.use(path.registro, registerR)
 router.use(path.login, authR)

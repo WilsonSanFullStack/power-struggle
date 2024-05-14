@@ -20,7 +20,7 @@ router.post("/", async (req: Request, res: Response) => {
       user.level = 1;
       user.nextLevel = user.level + 1;
       const newUser = await postUser(user);
-      if (newUser.message) {
+      if (newUser.error) {
         return res.status(401).json(newUser)
       } 
       if (newUser) {

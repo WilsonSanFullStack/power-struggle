@@ -21,45 +21,45 @@ export class UserStore extends Model<UserStore> {
   @Column({ primaryKey: true, type: DataType.UUID })
   id!: string;
 
-  @Column
+  @Column(DataType.INTEGER)
   gold!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   copper!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   carbon!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   emerald!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   iron!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   nickel!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   silver!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   platinum!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   army!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   armada!: number;
 
-  @Column
+  @Column(DataType.INTEGER)
   airForce!: number;
 
   @CreatedAt
-  @Column
+  @Column(DataType.DATE)
   createdAt!: Date;
 
   @UpdatedAt
-  @Column
+  @Column(DataType.DATE)
   updatedAt!: Date;
 
   beforeCreate() {

@@ -12,7 +12,7 @@ export const postUser = async (user: USERS) => {
     }
     const verifyUser = await User.findOne({ where: { email: user.email } });
     if (verifyUser) {
-      return { message: "El email ya esta registrado" };
+      return { error: "El email ya esta registrado" };
     } else {
       const password = user.password
       const saltRounds = 10
