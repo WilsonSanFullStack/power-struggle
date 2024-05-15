@@ -1,9 +1,9 @@
 import { sequelize } from "../src/db";
 
 describe('Database connection', () => {
-  it('should connect to the database successfully', async () => {
+  test('should connect to the database successfully', async () => {
     try {
-      await sequelize.authenticate();
+      await sequelize.authenticate({logging: false});
       expect(true).toBe(true); // Si la conexión tiene éxito, la prueba pasa
     } catch (error) {
       console.error('Unable to connect to the database:', error);

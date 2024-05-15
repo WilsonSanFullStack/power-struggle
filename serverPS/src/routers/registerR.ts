@@ -21,10 +21,9 @@ router.post("/", async (req: Request, res: Response) => {
       user.nextLevel = user.level + 1;
       const newUser = await postUser(user);
       if (newUser.error) {
-        return res.status(401).json(newUser)
-      } 
-      if (newUser) {
-        return res.status(200).json({ message: "Registro exitoso" });
+        return res.status(401).json(newUser.error)
+      } else {
+        return res.status(200).json(newUser.message);
       }
     } else {
       return res.status(405).json({ error: "Faltan datos para el registro" });
@@ -32,7 +31,7 @@ router.post("/", async (req: Request, res: Response) => {
   } catch (error) {
     return res
       .status(501)
-      .json({ message: "Error en el servidor intente nuevamente" + error });
+      .json(error);
   }
 });
 

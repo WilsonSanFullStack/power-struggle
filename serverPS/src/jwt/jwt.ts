@@ -14,9 +14,9 @@ export const verifyToken = (token: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, secretKey!, { complete: true }, (err: VerifyErrors | null, decoded: object | undefined) => {
       if (err) {
-        reject(err.message); // Reject the promise with the error message
+        reject(new Error('Invalid token')); // Rechazar el token inválido con un error
       } else {
-        resolve(decoded); // Resolve the promise with the decoded data
+        resolve(decoded); // Resolver la promesa con los datos decodificados
       }
     });
   });

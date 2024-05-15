@@ -30,7 +30,7 @@ export const postUser = async (user: USERS) => {
       }
       const newUser = await User.create(user as User);
       return {
-        message: `Usuario creado correctamente con username ${newUser.userName}`,
+        message: `Usuario creado correctamente con username ${newUser.dataValues.userName}`,
       };
     }
   } catch (error) {

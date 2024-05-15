@@ -3,11 +3,11 @@ const router = Router();
 import { logging } from "../controller/authC";
 
 router.post("/", async (req: Request, res: Response) => {
-  const login = req.body;
   try {
+    const login = req.body;
     const token = await logging(login);
     if (token && typeof token !== 'string') {
-      return res.status(404).json(token.error)
+      return res.status(404).json(token.message)
     } else {
     res.cookie("accessToken", token, {httpOnly: true, secure: true})
     return res.status(200).json({success: true})

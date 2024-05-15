@@ -28,6 +28,7 @@ export class User extends Model<User> {
   @Column(DataType.STRING)
   lastName!: string;
   
+  @Unique
   @Column(DataType.STRING)
   userName!: string;
 
