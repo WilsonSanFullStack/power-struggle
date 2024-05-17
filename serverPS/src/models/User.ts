@@ -56,9 +56,15 @@ export class User extends Model<User> {
   @Unique
   @Column (DataType.STRING)
   email!: string;
-
+  
   @Column(DataType.BOOLEAN)
   admin!: boolean;
+  
+  @Column (DataType.STRING)
+  code!: string;
+
+  @Column(DataType.BOOLEAN)
+  verify!: boolean;
 
   @Column(DataType.STRING)
   ipAddress!: string;

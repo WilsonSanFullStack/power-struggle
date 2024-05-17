@@ -31,6 +31,5 @@ server.use((err: Err, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   res.status(status).json(message);
 });
-
 server.use(router);
 export default server;

@@ -78,7 +78,7 @@ describe("Server", () => {
       }
       const response = await request(server).post("/api/ps/register").send(use);
       expect(response.body).toEqual(
-        expect.stringContaining(`Usuario creado correctamente con username ${use.userName}`)
+        expect.stringContaining(`Usuario creado correctamente con username ${use.userName}.`)
       );
     });
   });
