@@ -89,7 +89,7 @@ export const getAllUser = async () => {
   try {
     const users = await User.findAll({
       //tomamos solo las siguientes propiedades el modelo
-      // attributes: ["id", "userName", "email"],
+      //? attributes: ["id", "userName", "email"],
     });
     // retornamos con las anteriores propiedades
     return users;
